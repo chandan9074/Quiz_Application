@@ -10,6 +10,7 @@ from .models import Quiz, Question, Answer, Option, Result
 
 # Create your views here.
 
+# view quiz by their users api
 
 class QuizAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -30,6 +31,8 @@ class QuizAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# create quiz api
+
 class CreateQuizAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -40,6 +43,8 @@ class CreateQuizAPIView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# view question by quiz id api
 
 class QuestionAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -67,6 +72,8 @@ class QuestionAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# create question api
+
 class CreateQuestionAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -77,6 +84,8 @@ class CreateQuestionAPIView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# view options by their question id api
 
 class OptionAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -104,6 +113,8 @@ class OptionAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# create option api
+
 class CreateOptionAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -114,6 +125,8 @@ class CreateOptionAPIView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# view answer by it question id api
 
 class AnswerAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -126,6 +139,8 @@ class AnswerAPIView(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+# create answer api
+
 class CreateAnswerAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -137,6 +152,8 @@ class CreateAnswerAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# view results by its quiz api
+
 class ResultAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -147,6 +164,8 @@ class ResultAPIView(APIView):
             return Response(serializer.data)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
+# create results api
 
 class CreateResultAPIView(APIView):
     permission_classes = [IsAuthenticated]
