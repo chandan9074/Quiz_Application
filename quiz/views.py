@@ -14,13 +14,6 @@ from .models import Quiz, Question, Answer, Option, Result
 class QuizAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
-        serializer = QuizSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def get(self, request, pk):
         if (Quiz.objects.filter(user_profile=pk)).exists():
             serializer_data = Quiz.objects.filter(user_profile=pk)
@@ -37,7 +30,18 @@ class QuizAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class Question(APIView):
+class CreateQuizAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = QuizSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class QuestionAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, pk):
@@ -57,6 +61,17 @@ class Question(APIView):
     def put(self, request, pk):
         ques_object = Question.objects.get(id=pk)
         serializer = QuestionSerializer(ques_object, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateQuestionAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = QuestionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -89,6 +104,17 @@ class OptionAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CreateOptionAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = OptionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class AnswerAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -98,6 +124,10 @@ class AnswerAPIView(APIView):
             serializer = AnswerSerializer(seializer_data)
             return Response(serializer.data)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateAnswerAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = AnswerSerializer(data=request.data)
@@ -116,6 +146,10 @@ class ResultAPIView(APIView):
             serializer = ResultSerializer(seializer_data, many=True)
             return Response(serializer.data)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateResultAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = ResultSerializer(data=request.data)

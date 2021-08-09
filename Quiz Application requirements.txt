@@ -1,0 +1,15 @@
+#### Quiz application requirements 
+
+1. Authentication requirements 
+	1. Registration => done
+	2. Login 	=> done
+	3. Logout
+
+2. users requirments
+	1. they have to create quiz 
+	2. they have to update quiz
+	3. they have to delete quiz
+	4. they have to attend quiz
+	5. they have to see their result 
+	6. quiz creater see their quizes all result
+	
